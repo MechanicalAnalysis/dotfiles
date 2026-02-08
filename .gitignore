@@ -1,0 +1,12 @@
+# Meu setup Armbian + i3 + Catppuccin
+
+## Restaurar sistema
+1. Instalar Armbian (Ubuntu/Debian)
+2. Restaurar pacotes:
+   sudo dpkg --set-selections < packages/pacotes.txt
+   sudo apt-get dselect-upgrade
+3. Restaurar configs:
+   rsync -a config/ ~/.config/
+   rsync -a themes/ ~/.themes/
+   cp home-files/* ~/
+4. Reboot
