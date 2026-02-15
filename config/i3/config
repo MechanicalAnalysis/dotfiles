@@ -200,7 +200,9 @@ bar {
     position top
     
     # Usa o protocolo i3status
-    status_command i3status
+    #status_command i3status
+    status_command i3blocks -c ~/.config/i3blocks/config
+    
     
     # Estilo Catppuccin Mocha para a barra
     colors {
@@ -223,5 +225,5 @@ default_border pixel 1
 default_floating_border pixel 1
 
 exec --no-startup-id nm-applet
-exec --no-startup-id pasystray
+#exec --no-startup-id pasystray
 exec --no-startup-id blueman-applet
