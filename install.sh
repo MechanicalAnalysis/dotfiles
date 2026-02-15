@@ -16,7 +16,6 @@ blueman \
 network-manager-gnome \
 volumeicon-alsa \
 fonts-font-awesome \
-fonts-nerd-fonts \
 rofi \
 git \
 curl \
