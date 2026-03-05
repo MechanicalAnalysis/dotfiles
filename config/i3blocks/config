@@ -1,67 +1,64 @@
-# ====== SISTEMA ======
+# ====== GLOBAL ======
 
 [global]
 separator=true
-separator_block_width=20
+separator_block_width=40
 markup=none
 
+# ====== CPU ======
+
 [cpu]
-command=grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf " %.0f%%", usage}'
-interval=5
-min_width= 100%
-align=center
-color=#cba6f7
+command=grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf " CPU  %.0f%%", usage}'
+interval=10
+color=#89b4fa
+
+# ====== MEM ======
 
 [mem]
-command=free -h | awk '/Mem:/ {print "󰍛 "$3 "/" $2}'
-interval=5
-min_width=󰍛 16G/16G
-align=center
+command=free -h | awk '/Mem:/ {print " MEN  "$3 "/" $2}'
+interval=10
 color=#a6e3a1
 
+# ====== GPU ======
+# NVIDIA usa nvidia-smi
+# Se não tiver NVIDIA ele não quebra o i3blocks
+
 [gpu]
-command=~/.config/i3blocks/scripts/gpu_nvidia.sh | sed 's/GPU/󰢮/'
-interval=2
-color=#7aa2f7
-min_width=󰢮 100%
-align=center
+command=nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits 2>/dev/null | awk '{print " GPU 󰢮 "$1"%"}'
+interval=10
+color=#cba6f7
+
+
+# ====== DISK ======
 
 [disk]
-command=df -h / | awk 'NR==2 {print " "$3 "/" $2}'
+command=df -h / | awk 'NR==2 {print " DISK 󰋊 "$3 "/" $2}'
 interval=30
-min_width= 999G/999G
-align=center
-color=#fab387
+color=#f9e2af
+
+# ====== IP ======
 
 [ip]
-command=hostname -I | awk '{print "󰩟 "$1}'
+command=hostname -I | awk '{print " 󰩠 "$1 }'
 interval=10
-min_width=󰩟 255.255.255.255
-align=center
-color=#94e2d5
+color=#fab387
+
+# ====== DATA ======
 
 [datetime]
-command=date '󰥔 %d/%m %H:%M'
-interval=1
-color=#b4befe
-
-[volume]
-label=
-instance=Master
-interval=1
-signal=10
-command=/usr/share/i3blocks/volume
-min_width= 100%
-align=center
-color=#f9e2af
+command=date '+ 󰃰 %d/%m 󰥔 %H:%M'
+interval=10
+color=#cdd6f4
 
 
 # ====== POWER ======
 
 [power]
-command=/home/user/.config/i3blocks/power.sh
-interval=once
-separator=true
-min_width=POWER
-align=center
-color=#f38ba8
+command=/home/arnald/.config/i3blocks/power.sh
+interval=10
+signal=10
+
+[som]
+command=~/.config/i3blocks/volume.sh
+interval=1
+color=#89b4fa
