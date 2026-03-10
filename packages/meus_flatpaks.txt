@@ -1,0 +1,4 @@
+com.sublimehq.SublimeText
+io.dbeaver.DBeaverCommunity
+io.github.crealityofficial.CrealityPrint
+net.davidotek.pupgui2
